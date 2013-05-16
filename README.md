@@ -26,7 +26,7 @@ on both Windows and POSIX platforms:
     green, yellow, blue, magenta/purple, cyan/aqua, white, and the
     default background color, respectively.
 
-*   `"\027[0m"`, `"\027[1m"`, and `\027[7m"`
+*   `"\027[0m"`, `"\027[1m"`, and `"\027[7m"`
 
     Those escape sequences represent normal mode, highlighted mode,
     and inverted mode.
@@ -66,4 +66,11 @@ license (the same license as Lua 5.1). The full license text follows:
     CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
     TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
     SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+The actual code implementing the `print` function is taken almost
+verbatim from the [Lua][1] source code, which is
+
+    Copyright (C) 1994-2013 Lua.org, PUC-Rio.
+
+  [1]:  http://www.lua.org/
 
