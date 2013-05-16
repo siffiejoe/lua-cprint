@@ -1,0 +1,65 @@
+/*
+ * Compile (to pr_ansi.h):
+ * $ ragel -C -G2 pr_ansi.rh
+ * For graphviz output:
+ * $ ragel -V -p pr_ansi.rh | dot -T png -o out.png
+ */
+
+
+%%{
+  machine term_support;
+  main := (
+      "xterm" |
+      "rxvt" |
+      "linux" 0
+    ) @{ res = 1; fbreak; };
+}%%
+
+
+static int terminal_supported( char const* p ) {
+  int res = 0;
+  int cs = 0;
+%%{
+  machine term_support;
+  write data nofinal noerror;
+  write init;
+  write exec noend;
+}%%
+  (void)term_support_en_main;
+  return res;
+}
+
+
+%%{
+  machine ansi_escape;
+  fg = "3" digit;
+  bg = "4" digit;
+  md = digit;
+  opt = fg | bg | md;
+  action flush {
+    if( p > prev )
+      w( prev, p-prev );
+    prev = p;
+  }
+  action ansi {
+    iprint_doansi( info, prev, p+1-prev );
+    prev = p+1;
+  }
+  esc = 27 >flush "[" opt ( ";" opt )* "m" @ansi;
+  main := (any | esc)* %/flush ;
+}%%
+
+static void write_ansi( iprint_info* info, char const* p, size_t n ) {
+  int cs = 0;
+  char const* pe = p + n;
+  char const* eof = pe;
+  char const* prev = p;
+%%{
+  machine ansi_escape;
+  write data nofinal noerror;
+  write init;
+  write exec;
+}%%
+  (void)ansi_escape_en_main;
+}
+
