@@ -9,7 +9,7 @@
 
 
 
-#line 16 "pr_ansi.rh"
+#line 20 "pr_ansi.rh"
 
 
 
@@ -34,9 +34,13 @@ static const int term_support_en_main = 1;
 	{
 case 1:
 	switch( (*p) ) {
-		case 108: goto st2;
-		case 114: goto st7;
-		case 120: goto st10;
+		case 69: goto st2;
+		case 97: goto st6;
+		case 108: goto st10;
+		case 112: goto st14;
+		case 114: goto st16;
+		case 115: goto st19;
+		case 120: goto st2;
 	}
 	goto st0;
 st0:
@@ -45,90 +49,150 @@ cs = 0;
 st2:
 	p += 1;
 case 2:
-	if ( (*p) == 105 )
+	if ( (*p) == 116 )
 		goto st3;
 	goto st0;
 st3:
 	p += 1;
 case 3:
-	if ( (*p) == 110 )
+	if ( (*p) == 101 )
 		goto st4;
 	goto st0;
 st4:
 	p += 1;
 case 4:
-	if ( (*p) == 117 )
+	if ( (*p) == 114 )
 		goto st5;
 	goto st0;
 st5:
 	p += 1;
 case 5:
-	if ( (*p) == 120 )
-		goto st6;
+	if ( (*p) == 109 )
+		goto tr10;
+	goto st0;
+tr10:
+#line 19 "pr_ansi.rh"
+	{ res = 1; {p++; cs = 24; goto _out;} }
+	goto st24;
+st24:
+	p += 1;
+case 24:
+#line 81 "pr_ansi.h"
 	goto st0;
 st6:
 	p += 1;
 case 6:
-	if ( (*p) == 0 )
-		goto tr8;
-	goto st0;
-tr8:
-#line 15 "pr_ansi.rh"
-	{ res = 1; {p++; cs = 14; goto _out;} }
-	goto st14;
-st14:
-	p += 1;
-case 14:
-#line 83 "pr_ansi.h"
+	if ( (*p) == 110 )
+		goto st7;
 	goto st0;
 st7:
 	p += 1;
 case 7:
-	if ( (*p) == 120 )
+	if ( (*p) == 115 )
 		goto st8;
 	goto st0;
 st8:
 	p += 1;
 case 8:
-	if ( (*p) == 118 )
+	if ( (*p) == 105 )
 		goto st9;
 	goto st0;
 st9:
 	p += 1;
 case 9:
-	if ( (*p) == 116 )
-		goto tr8;
+	if ( (*p) == 0 )
+		goto tr10;
 	goto st0;
 st10:
 	p += 1;
 case 10:
-	if ( (*p) == 116 )
+	if ( (*p) == 105 )
 		goto st11;
 	goto st0;
 st11:
 	p += 1;
 case 11:
-	if ( (*p) == 101 )
+	if ( (*p) == 110 )
 		goto st12;
 	goto st0;
 st12:
 	p += 1;
 case 12:
-	if ( (*p) == 114 )
+	if ( (*p) == 117 )
 		goto st13;
 	goto st0;
 st13:
 	p += 1;
 case 13:
-	if ( (*p) == 109 )
-		goto tr8;
+	if ( (*p) == 120 )
+		goto st9;
+	goto st0;
+st14:
+	p += 1;
+case 14:
+	if ( (*p) == 99 )
+		goto st15;
+	goto st0;
+st15:
+	p += 1;
+case 15:
+	if ( (*p) == 97 )
+		goto st6;
+	goto st0;
+st16:
+	p += 1;
+case 16:
+	if ( (*p) == 120 )
+		goto st17;
+	goto st0;
+st17:
+	p += 1;
+case 17:
+	if ( (*p) == 118 )
+		goto st18;
+	goto st0;
+st18:
+	p += 1;
+case 18:
+	if ( (*p) == 116 )
+		goto tr10;
+	goto st0;
+st19:
+	p += 1;
+case 19:
+	if ( (*p) == 99 )
+		goto st20;
+	goto st0;
+st20:
+	p += 1;
+case 20:
+	if ( (*p) == 114 )
+		goto st21;
+	goto st0;
+st21:
+	p += 1;
+case 21:
+	if ( (*p) == 101 )
+		goto st22;
+	goto st0;
+st22:
+	p += 1;
+case 22:
+	if ( (*p) == 101 )
+		goto st23;
+	goto st0;
+st23:
+	p += 1;
+case 23:
+	if ( (*p) == 110 )
+		goto tr10;
 	goto st0;
 	}
 
 	_out: {}
 	}
 
-#line 27 "pr_ansi.rh"
+#line 31 "pr_ansi.rh"
 
   (void)term_support_en_main;
   return res;
@@ -136,7 +200,7 @@ case 13:
 
 
 
-#line 50 "pr_ansi.rh"
+#line 54 "pr_ansi.rh"
 
 
 static void write_ansi( iprint_info* info, char const* p, size_t n ) {
@@ -145,25 +209,25 @@ static void write_ansi( iprint_info* info, char const* p, size_t n ) {
   char const* eof = pe;
   char const* prev = p;
 
-#line 149 "pr_ansi.h"
+#line 213 "pr_ansi.h"
 static const int ansi_escape_start = 0;
 
 static const int ansi_escape_en_main = 0;
 
 
-#line 155 "pr_ansi.h"
+#line 219 "pr_ansi.h"
 	{
 	cs = ansi_escape_start;
 	}
 
-#line 160 "pr_ansi.h"
+#line 224 "pr_ansi.h"
 	{
 	if ( p == pe )
 		goto _test_eof;
 	switch ( cs )
 	{
 tr5:
-#line 44 "pr_ansi.rh"
+#line 48 "pr_ansi.rh"
 	{
     iprint_doansi( info, prev, p+1-prev );
     prev = p+1;
@@ -173,12 +237,12 @@ st0:
 	if ( ++p == pe )
 		goto _test_eof0;
 case 0:
-#line 177 "pr_ansi.h"
+#line 241 "pr_ansi.h"
 	if ( (*p) == 27 )
 		goto tr1;
 	goto st0;
 tr1:
-#line 39 "pr_ansi.rh"
+#line 43 "pr_ansi.rh"
 	{
     if( p > prev )
       w( prev, p-prev );
@@ -189,7 +253,7 @@ st1:
 	if ( ++p == pe )
 		goto _test_eof1;
 case 1:
-#line 193 "pr_ansi.h"
+#line 257 "pr_ansi.h"
 	switch( (*p) ) {
 		case 27: goto tr1;
 		case 91: goto st2;
@@ -248,20 +312,20 @@ case 4:
 	case 2: 
 	case 3: 
 	case 4: 
-#line 39 "pr_ansi.rh"
+#line 43 "pr_ansi.rh"
 	{
     if( p > prev )
       w( prev, p-prev );
     prev = p;
   }
 	break;
-#line 259 "pr_ansi.h"
+#line 323 "pr_ansi.h"
 	}
 	}
 
 	}
 
-#line 62 "pr_ansi.rh"
+#line 66 "pr_ansi.rh"
 
   (void)ansi_escape_en_main;
 }

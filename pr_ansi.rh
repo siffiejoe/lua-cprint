@@ -11,6 +11,10 @@
   main := (
       "xterm" |
       "rxvt" |
+      "screen" |
+      "Eterm" |
+      "ansi" 0 |
+      "pcansi" 0 |
       "linux" 0
     ) @{ res = 1; fbreak; };
 }%%
