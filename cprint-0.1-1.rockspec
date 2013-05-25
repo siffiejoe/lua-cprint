@@ -1,7 +1,7 @@
-package="iprint"
+package="cprint"
 version="0.1-1"
 source = {
-  url = "git://github.com/siffiejoe/lua-iprint.git",
+  url = "git://github.com/siffiejoe/lua-cprint.git",
   tag = "v0.1",
 }
 description = {
@@ -10,7 +10,7 @@ description = {
     An improved print function that can handle simple
     ANSI color escape sequences.
   ]],
-  homepage = "https://github.com/siffiejoe/lua-iprint/",
+  homepage = "https://github.com/siffiejoe/lua-cprint/",
   license = "MIT"
 }
 dependencies = {
@@ -19,7 +19,7 @@ dependencies = {
 build = {
   type = "builtin",
   modules = {
-    iprint = "iprint.c",
+    cprint = "cprint.c",
   }
 }
 

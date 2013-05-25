@@ -37,9 +37,9 @@
     int last_fg;
     int last_bg;
     int last_md;
-  } iprint_info;
+  } cprint_info;
 
-  static void iprint_init( iprint_info* info ) {
+  static void cprint_init( cprint_info* info ) {
     info->last_fg = 7;
     info->last_bg = 0;
     info->last_md = 0;
@@ -49,7 +49,7 @@
       info->enabled = 0;
   }
 
-  static void iprint_doansi( iprint_info* info,
+  static void cprint_doansi( cprint_info* info,
                              char const* esc, size_t n ) {
     if( info->enabled ) {
       char const* p = esc;
@@ -108,18 +108,18 @@
 
   typedef struct {
     int enabled;
-  } iprint_info;
+  } cprint_info;
 
   /* defined in pr_ansi.h */
   static int terminal_supported( char const* term );
 
-  static void iprint_init( iprint_info* info ) {
+  static void cprint_init( cprint_info* info ) {
     char const* term = getenv( "TERM" );
     info->enabled = term != NULL && terminal_supported( term ) &&
                     isatty( STDOUT_FILENO );
   }
 
-  static void iprint_doansi( iprint_info* info,
+  static void cprint_doansi( cprint_info* info,
                              char const* esc, size_t n ) {
     if( info->enabled )
       w( esc, n );
@@ -130,13 +130,13 @@
   /* unknown/unsupported OS */
   typedef struct {
     int dummy;
-  } iprint_info;
+  } cprint_info;
 
-  static void iprint_init( iprint_info* info ) {
+  static void cprint_init( cprint_info* info ) {
     info->dummy = 0;
   }
 
-  static void iprint_doansi( iprint_info* info,
+  static void cprint_doansi( cprint_info* info,
                              char const* esc, size_t n ) {
     (void)info;
     (void)esc;
@@ -148,8 +148,8 @@
 
 #include "pr_ansi.h"
 
-static int iprint( lua_State* L ) {
-  iprint_info* info = lua_touserdata( L, lua_upvalueindex( 1 ) );
+static int cprint( lua_State* L ) {
+  cprint_info* info = lua_touserdata( L, lua_upvalueindex( 1 ) );
   int top = lua_gettop( L );
   int i = 0;
   lua_getglobal( L, "tostring" );
@@ -178,10 +178,10 @@ static int iprint( lua_State* L ) {
 #  define IPRINT_API
 #endif
 
-IPRINT_API int luaopen_iprint( lua_State* L ) {
-  iprint_info* info = lua_newuserdata( L, sizeof( iprint_info ) );
-  iprint_init( info );
-  lua_pushcclosure( L, iprint, 1 );
+IPRINT_API int luaopen_cprint( lua_State* L ) {
+  cprint_info* info = lua_newuserdata( L, sizeof( cprint_info ) );
+  cprint_init( info );
+  lua_pushcclosure( L, cprint, 1 );
   return 1;
 }
 

@@ -203,7 +203,7 @@ case 23:
 #line 54 "pr_ansi.rh"
 
 
-static void write_ansi( iprint_info* info, char const* p, size_t n ) {
+static void write_ansi( cprint_info* info, char const* p, size_t n ) {
   int cs = 0;
   char const* pe = p + n;
   char const* eof = pe;
@@ -229,7 +229,7 @@ static const int ansi_escape_en_main = 0;
 tr5:
 #line 48 "pr_ansi.rh"
 	{
-    iprint_doansi( info, prev, p+1-prev );
+    cprint_doansi( info, prev, p+1-prev );
     prev = p+1;
   }
 	goto st0;

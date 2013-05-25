@@ -1,4 +1,4 @@
-#                               iprint                               #
+#                               cprint                               #
 
 Improved print function that handles ANSI escapes even on Windows
 
@@ -8,7 +8,7 @@ Improved print function that handles ANSI escapes even on Windows
 The function returned by this Lua module is compatible with the
 default Lua `print` function and can serve as a replacement for it.
 
-    print = require( "iprint" )
+    print = require( "cprint" )
     print( "hello world" )
 
 Additionally, the following ANSI color escape sequences are supported
@@ -28,8 +28,8 @@ on both Windows and POSIX platforms:
 
 *   `"\027[0m"`, `"\027[1m"`, and `"\027[7m"`
 
-    Those escape sequences represent normal mode, highlighted mode,
-    and inverted mode.
+    Those escape sequences represent normal mode, bright/highlighted
+    mode, and inverted mode.
 
 The escape sequences can be combined by separating the numbers with
 `;`, e.g.:
@@ -43,10 +43,10 @@ sequences are stripped from the output.
 
 ##                              License                             ##
 
-iprint is *copyrighted free software* distributed under the MIT
+cprint is *copyrighted free software* distributed under the MIT
 license (the same license as Lua 5.1). The full license text follows:
 
-    iprint (c) 2013 Philipp Janda
+    cprint (c) 2013 Philipp Janda
 
     Permission is hereby granted, free of charge, to any person obtaining
     a copy of this software and associated documentation files (the

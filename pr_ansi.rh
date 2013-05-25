@@ -46,14 +46,14 @@ static int terminal_supported( char const* p ) {
     prev = p;
   }
   action ansi {
-    iprint_doansi( info, prev, p+1-prev );
+    cprint_doansi( info, prev, p+1-prev );
     prev = p+1;
   }
   esc = 27 >flush "[" opt ( ";" opt )* "m" @ansi;
   main := (any | esc)* %/flush ;
 }%%
 
-static void write_ansi( iprint_info* info, char const* p, size_t n ) {
+static void write_ansi( cprint_info* info, char const* p, size_t n ) {
   int cs = 0;
   char const* pe = p + n;
   char const* eof = pe;
