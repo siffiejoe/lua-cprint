@@ -174,11 +174,11 @@ static int cprint( lua_State* L ) {
 }
 
 
-#ifndef IPRINT_API
-#  define IPRINT_API
+#ifndef CPRINT_API
+#  define CPRINT_API
 #endif
 
-IPRINT_API int luaopen_cprint( lua_State* L ) {
+CPRINT_API int luaopen_cprint( lua_State* L ) {
   cprint_info* info = lua_newuserdata( L, sizeof( cprint_info ) );
   cprint_init( info );
   lua_pushcclosure( L, cprint, 1 );
