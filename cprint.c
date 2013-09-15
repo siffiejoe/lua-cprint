@@ -4,10 +4,13 @@
 #include "lua.h"
 #include "lauxlib.h"
 
+#ifndef CPRINT_STREAM
+#  define CPRINT_STREAM stdout
+#endif
 
-#define w( s, n ) (fwrite( (s), sizeof( char ), (n), stdout ))
-#define tab()     (putc( '\t', stdout ))
-#define nl()      (putc( '\n', stdout ), fflush( stdout ))
+#define w( s, n ) (fwrite( (s), sizeof( char ), (n), CPRINT_STREAM ))
+#define tab()     (putc( '\t', CPRINT_STREAM ))
+#define nl()      (putc( '\n', CPRINT_STREAM ), fflush( CPRINT_STREAM ))
 
 
 /* Try to figure out if we are a posix or windows environment */
@@ -43,7 +46,7 @@
     info->last_fg = 7;
     info->last_bg = 0;
     info->last_md = 0;
-    info->enabled = _isatty( _fileno( stdout ) );
+    info->enabled = _isatty( _fileno( CPRINT_STREAM ) );
     info->hConsole = GetStdHandle( STD_OUTPUT_HANDLE );
     if( info->hConsole == INVALID_HANDLE_VALUE )
       info->enabled = 0;
