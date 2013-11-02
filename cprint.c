@@ -43,11 +43,12 @@
   } cprint_info;
 
   static void cprint_init( cprint_info* info ) {
+    int fd = _fileno( CPRINT_STREAM )
     info->last_fg = 7;
     info->last_bg = 0;
     info->last_md = 0;
-    info->enabled = _isatty( _fileno( CPRINT_STREAM ) );
-    info->hConsole = GetStdHandle( STD_OUTPUT_HANDLE );
+    info->enabled = _isatty( fd );
+    info->hConsole = (HANDLE)_get_osfhandle( fd );
     if( info->hConsole == INVALID_HANDLE_VALUE )
       info->enabled = 0;
   }
@@ -119,7 +120,7 @@
   static void cprint_init( cprint_info* info ) {
     char const* term = getenv( "TERM" );
     info->enabled = term != NULL && terminal_supported( term ) &&
-                    isatty( STDOUT_FILENO );
+                    isatty( fileno( CPRINT_STREAM ) );
   }
 
   static void cprint_doansi( cprint_info* info,
