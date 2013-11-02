@@ -43,7 +43,7 @@
   } cprint_info;
 
   static void cprint_init( cprint_info* info ) {
-    int fd = _fileno( CPRINT_STREAM )
+    int fd = _fileno( CPRINT_STREAM );
     info->last_fg = 7;
     info->last_bg = 0;
     info->last_md = 0;
