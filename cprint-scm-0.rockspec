@@ -1,8 +1,7 @@
 package="cprint"
-version="0.1-2"
+version="scm-0"
 source = {
   url = "git://github.com/siffiejoe/lua-cprint.git",
-  tag = "v0.1",
 }
 description = {
   summary = "An improved print function",
@@ -14,7 +13,7 @@ description = {
   license = "MIT"
 }
 dependencies = {
-  "lua >= 5.1, < 5.4"
+  "lua >= 5.1"
 }
 build = {
   type = "builtin",

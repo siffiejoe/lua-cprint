@@ -8,6 +8,10 @@
 #  define CPRINT_STREAM stdout
 #endif
 
+#ifndef LUA_QL
+#  define LUA_QL(s) "'" s "'"
+#endif
+
 #define w( s, n ) (fwrite( (s), sizeof( char ), (n), CPRINT_STREAM ))
 #define tab()     (putc( '\t', CPRINT_STREAM ))
 #define nl()      (putc( '\n', CPRINT_STREAM ), fflush( CPRINT_STREAM ))
